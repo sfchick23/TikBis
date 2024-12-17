@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Links</title>
+</head>
+<body>
+
+<div>
+    <ul>
+        <li th:each="code : ${codes}">
+            <form action="/links-get" method="get">
+                <p th:text="${code}">Link</p>
+                <input type="hidden" name="code"/>
+                <button type="submit" class="btn btn-success">найти документ</button>
+            </form>
+
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
