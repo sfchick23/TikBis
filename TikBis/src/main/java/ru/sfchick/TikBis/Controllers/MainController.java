@@ -29,8 +29,7 @@ public class MainController {
 
     @GetMapping("links-get")
     public String linksGet(Model model) {
-        parseService.processAndSubmit();
-
-        return "idinahuy";
+        model.addAttribute("docs" ,parseService.processAndSubmit());
+        return "tiktok/view-info";
     }
 }

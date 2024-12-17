@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info</title>
+</head>
+<body>
+<div th:if="${docs}">
+    <div th:each="doc : ${docs}">
+        <ul>
+            <li><strong>Name:</strong> <span th:text="${doc.name}"></span></li>
+            <li><strong>Country:</strong> <span th:text="${doc.country}"></span></li>
+            <li><strong>Address:</strong> <span th:text="${doc.address}"></span></li>
+            <li><strong>State:</strong> <span th:text="${doc.stat}"></span></li>
+            <li><strong>Zip Code:</strong> <span th:text="${doc.zipcode}"></span></li>
+            <li><strong>License Number:</strong> <span th:text="${doc.licenses}"></span></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
