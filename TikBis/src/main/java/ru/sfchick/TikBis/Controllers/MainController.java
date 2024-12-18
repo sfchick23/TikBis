@@ -19,18 +19,14 @@ public class MainController {
         this.parseService = parseService;
     }
 
-    @GetMapping("links")
+    @GetMapping()
     public String links(Model model) {
-        List<String> codes = parseService.parseAllCodes();
-        System.out.println(codes);
-        model.addAttribute("links", codes);
         return "tiktok/links";
     }
 
-    @GetMapping("links-get")
+    @GetMapping("documents")
     public String linksGet(Model model) {
-        parseService.processAndSubmit();
-
-        return "idinahuy";
+        model.addAttribute("docs" ,parseService.processAndSubmit());
+        return "tiktok/view-info";
     }
 }
