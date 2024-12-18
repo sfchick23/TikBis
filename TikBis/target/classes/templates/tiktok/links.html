@@ -7,16 +7,7 @@
 <body>
 
 <div>
-    <ul>
-        <li th:each="code : ${codes}">
-            <form action="/links-get" method="get">
-                <p th:text="${code}">Link</p>
-                <input type="hidden" name="code"/>
-                <button type="submit" class="btn btn-success">найти документ</button>
-            </form>
-
-        </li>
-    </ul>
+    <a href="/documents">Загрузить новые документы</a>
 </div>
 
 </body>

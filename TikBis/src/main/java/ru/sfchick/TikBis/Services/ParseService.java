@@ -107,6 +107,12 @@ public class ParseService {
             Element documentIdLabel = row.select("label[for=Detail_DocumentId]").first();
             String licenses = documentIdLabel.siblingElements().text().trim();
 
+            String documentUrl = "";
+            Elements documentLinks = row.select(".detailSection a[href*='GetDocument?']");
+            if (!documentLinks.isEmpty()) {
+                documentUrl = documentLinks.first().attr("href");
+                documentUrl = "https://search.sunbiz.org" + documentUrl;
+            }
             // Добавляем данные в карту
             map.put("name", name);
             map.put("country", "USA");
@@ -114,6 +120,7 @@ public class ParseService {
             map.put("stat", "Florida");
             map.put("zipcode", zipcode);
             map.put("licenses", licenses.split(" ")[0]);
+            map.put("document", documentUrl);
 
             System.out.println(map);
             results.add(map);

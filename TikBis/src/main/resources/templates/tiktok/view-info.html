@@ -3,19 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>info</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/copyScript.js"></script>
 </head>
 <body>
 <div th:if="${docs}">
     <div th:each="doc : ${docs}">
         <ul>
-            <li><strong>Name:</strong> <span th:text="${doc.name}"></span></li>
-            <li><strong>Country:</strong> <span th:text="${doc.country}"></span></li>
-            <li><strong>Address:</strong> <span th:text="${doc.address}"></span></li>
-            <li><strong>State:</strong> <span th:text="${doc.stat}"></span></li>
-            <li><strong>Zip Code:</strong> <span th:text="${doc.zipcode}"></span></li>
-            <li><strong>License Number:</strong> <span th:text="${doc.licenses}"></span></li>
+            <li>
+                <strong>Name:</strong>
+                <span th:text="${doc.name}" id="name"></span>
+                <button class="copy-btn" data-copy-target="name">Copy</button>
+            </li>
+            <li>
+                <strong>Country:</strong>
+                <span th:text="${doc.country}" id="country"></span>
+                <button class="copy-btn" data-copy-target="country">Copy</button>
+            </li>
+            <li>
+                <strong>Address:</strong>
+                <span th:text="${doc.address}" id="address"></span>
+                <button class="copy-btn" data-copy-target="address">Copy</button>
+            </li>
+            <li>
+                <strong>State:</strong>
+                <span th:text="${doc.stat}" id="stat"></span>
+                <button class="copy-btn" data-copy-target="stat">Copy</button>
+            </li>
+            <li>
+                <strong>Zip Code:</strong>
+                <span th:text="${doc.zipcode}" id="zipcode"></span>
+                <button class="copy-btn" data-copy-target="zipcode">Copy</button>
+            </li>
+            <li>
+                <strong>License Number:</strong>
+                <span th:text="${doc.licenses}" id="licenses"></span>
+                <button class="copy-btn" data-copy-target="licenses">Copy</button>
+            </li>
+            <li>
+                <strong>Document-pdf</strong>
+                <a th:href="${doc.document}" target="_blank">View document</a>
+            </li>
         </ul>
     </div>
 </div>
+<div>
+    <a href="/documents">Загрузить новые данные</a>
+</div>
+
 </body>
 </html>
