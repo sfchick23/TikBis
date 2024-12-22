@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.sfchick.TikBis.Services.ParseService;
 
 import java.util.Collections;
@@ -24,7 +25,13 @@ public class MainController {
         return "tiktok/links";
     }
 
-    @GetMapping("documents")
+    @GetMapping("/search")
+    public String search(@RequestParam(required = false) String query, Model model) {
+        model.addAttribute("docs", parseService.parseAllCodes(query));
+        return "tiktok/search";
+    }
+
+    @GetMapping("/documents")
     public String linksGet(Model model) {
         model.addAttribute("docs" ,parseService.processAndSubmit());
         return "tiktok/view-info";

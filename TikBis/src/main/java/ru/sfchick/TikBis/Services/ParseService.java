@@ -60,7 +60,6 @@ public class ParseService {
                 // Проверяем, что статус "Active"
                 if (status.equals("Active")) {
                     // Извлекаем текст ссылки
-//                    String linkText = row.select("td.large-width").text().trim();
                     String numberDoc = row.select("td.medium-width").text().trim();
                     links.add(numberDoc);
                 }
@@ -71,6 +70,54 @@ public class ParseService {
 
         return links;
     }
+
+    public List<String> parseAllCodes(String query) {
+
+        List<String> links = new ArrayList<>();
+
+        Random rand = new Random();
+
+
+        try {
+            // Получаем документ с реальным запросом
+            Document doc = Jsoup.connect(URL_QUERY)
+                    .data("SearchTerm", query)  // Заполняем поле SearchTerm
+                    .data("InquiryType", "FeiNumber")  // Другие скрытые поля формы
+                    .data("SearchNameOrder", "")
+                    .post();  // Отправляем запрос методом POST
+
+
+            if (doc == null) {
+                System.out.println("Ошибка при получении страницы.");
+                return links;
+            }
+
+            // Извлекаем строки таблицы с результатами
+            Elements rows = doc.select("table tbody tr");
+
+
+            // Обрабатываем строки таблицы
+            for (Element row : rows) {
+                // Извлекаем статус
+                String status = row.select("td.small-width").text().trim();
+
+                // Логирование статуса для отладки
+                System.out.println("Status: " + status);
+
+                // Проверяем, что статус "Active"
+                if (status.equals("Active")) {
+
+                    String numberDoc = row.select("td.medium-width").text().trim();
+                    links.add(numberDoc);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return links;
+    }
+
 
     public List<Map<String, String>> submitFormWithSearchTerm(String searchTerm) throws IOException {
         // Формируем запрос, передавая значение в поле SearchTerm
