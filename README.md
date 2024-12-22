@@ -7,4 +7,3 @@
 Для реализации проекта я использовал: Spring Framework
                                       Spring Boot 3
                                       Jsoup
-
