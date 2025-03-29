@@ -22,6 +22,8 @@ This is a simple website parser project:
                             
 This project is needed in order to parse and show the necessary information for registering a business in Tik Tok.
 
+
+
 ### The technologies used
 - Spring Framework
 - Spring Boot 3
